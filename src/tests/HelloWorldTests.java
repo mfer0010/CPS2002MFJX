@@ -1,4 +1,4 @@
-package edu.uom.cps2002;
+package tests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -49,12 +49,21 @@ public class HelloWorldTests {
     }
 
     @Test
-    public void testGetMessageByNameWilliam() {
+    public void testGetMessageByNameMarc() {
         //Exercise
-        String message = helloWorld.getMessage("William");
+        String message = helloWorld.getMessage("Marc");
 
         //Verify
-        assertEquals("Hello Your Majesty!!", message);
+        assertEquals("Aw", message);
+    }
+
+    @Test
+    public void testGetMessageByNameJasmine() {
+        //Exercise
+        String message = helloWorld.getMessage("Jasmine");
+
+        //Verify
+        assertEquals("Aw", message);
     }
 
     @Test

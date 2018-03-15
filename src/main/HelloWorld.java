@@ -1,4 +1,4 @@
-package edu.uom.cps2002;
+package main;
 
 public class HelloWorld {
 
@@ -12,8 +12,8 @@ public class HelloWorld {
             return getMessage();
         }
 
-        if (name == "William") {
-            return "Hello Your Majesty!!";
+        if (name == "Marc" || name == "Jasmine") {
+            return "Aw";
         }
 
         return "Hello " + name + "!!";
