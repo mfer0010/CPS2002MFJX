@@ -1,4 +1,4 @@
-package main;
+package TreasureHuntGame;
 
 public class HelloWorld {
 

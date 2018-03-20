@@ -1,4 +1,4 @@
-package tests;
+package TreasureHuntGame;
 
 import org.junit.After;
 import org.junit.Before;
