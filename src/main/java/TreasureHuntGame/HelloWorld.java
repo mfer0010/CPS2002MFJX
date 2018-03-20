@@ -13,7 +13,7 @@ public class HelloWorld {
         }
 
         if (name == "Marc" || name == "Jasmine") {
-            return "Aws";
+            return "Aw";
         }
 
         return "Hello " + name + "!!";
