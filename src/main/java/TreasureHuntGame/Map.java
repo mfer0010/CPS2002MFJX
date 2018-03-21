@@ -44,4 +44,31 @@ public class Map {
 
         return mapArray;
     }
+
+    //Added by Marc:
+    //This function creates a map state filled with 'Black' Tiles,
+    //This is to be used for each player's personal map
+    //which will be displayed.
+    public char[][] createFoggyMap(int size) {
+        this.size = size;
+        char mapArray[][] = new char[size][size];
+        //populate map
+        for(int i = 0; i <size; i++) {
+            for (int j = 0; j < size; j++) {
+                mapArray[i][j] = 'B';
+            }
+        }
+        return mapArray;
+    }
+
+    /*
+    Added by Marc:
+    This function accepts the player's map and the game map and a position and reveals
+    the tile in the position of the player map
+     */
+    public void revealTile(char[][] playerMap, char[][]gameMap, Position pos) {
+        int x = pos.x;
+        int y = pos.y;
+        playerMap[x][y] = gameMap[x][y];
+    }
 }

@@ -12,9 +12,9 @@ public class PlayerTest {
 
     @Before
     public void setup() {
-        player = new Player("Marc");
         pos = new Position(2,4);
-        player2 = new Player();
+        player = new Player("Marc", 5, pos);
+        player2 = new Player(5);
     }
 
     @After

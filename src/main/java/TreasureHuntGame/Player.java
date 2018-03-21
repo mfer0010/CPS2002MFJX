@@ -5,16 +5,26 @@ package TreasureHuntGame;
  */
 public class Player {
     private String name;
-    private Position position;
+    private Position position, startingPosition;
+    private Map map;
+    private char [][] playerMap;
 
-    public Player () {
+    //Each Player must be initialized with the size of the map
+    //and the starting position
+    public Player (int size) {
         name = "Undefined";
         position = new Position();
+        map = new Map();
+        playerMap = map.createFoggyMap(size);
+        this.startingPosition = new Position();
     }
 
-    public Player(String name) {
+    public Player(String name, int size, Position startingPosition) {
         this.name = name;
         position = new Position();
+        map = new Map();
+        playerMap = map.createFoggyMap(size);
+        this.startingPosition = new Position(startingPosition);
     }
 
     public String getName() {

@@ -13,6 +13,8 @@ public class Game {
 
     //jas
     char[][] GenerateMap(){
+        char [][] map = new char [1][1];
+        return map;
     }
 
     //jas
@@ -26,7 +28,11 @@ public class Game {
     }
 
     //marc
-    int CheckMovement(){
-
+    /*
+    Function that accepts the map and a position and moves the player to that position
+    and returns the state of the player depending on the tile
+     */
+    int CheckMovement(char [][] map, Position pos){
+        return 1;
     }
 }

@@ -12,6 +12,11 @@ public class Position {
         y = -1;
     }
 
+    public Position(Position pos) {
+        x = pos.x;
+        y = pos.y;
+    }
+
     public Position(int xx, int yy) {
         x = xx;
         y = yy;
