@@ -19,11 +19,11 @@ public class Player {
         this.startingPosition = new Position();
     }
 
-    public Player(String name, int size, Position startingPosition) {
+    public Player(String name, int mapSize, Position startingPosition) {
         this.name = name;
         position = new Position();
         map = new Map();
-        playerMap = map.createFoggyMap(size);
+        playerMap = map.createFoggyMap(mapSize);
         this.startingPosition = new Position(startingPosition);
     }
 
@@ -64,5 +64,14 @@ public class Player {
 
     public Position getPosition() {
         return position;
+    }
+
+    public char [][] getMap() {
+        return playerMap;
+    }
+
+    //function to move the player back to their origional starting position
+    public void resetPosition() {
+        position = startingPosition;
     }
 }
