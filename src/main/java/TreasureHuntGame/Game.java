@@ -1,4 +1,6 @@
 package TreasureHuntGame;
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +14,6 @@ public class Game {
     int minMapSize1 = 5;
     int minMapSize2 = 8;
     int maxMapSize = 50;
-    int numOfPlayers;
     int mapSize;
     ArrayList<Player> players = new ArrayList<Player>();
     Map map = new Map();
@@ -21,15 +22,14 @@ public class Game {
     public Game(){
     }
 
-    boolean SetNumOfPlayers(int numOfPlayers){
+    boolean CheckNumOfPlayers(int numOfPlayers){
         if(numOfPlayers < minPlayers || numOfPlayers > maxPlayers){
             return false; //unsuccessful
         }
-        this.numOfPlayers = numOfPlayers;
         return true;
     }
 
-    boolean SetMapSize(int mapSize){
+    boolean CheckMapSize(int mapSize, int numOfPlayers){
         if(numOfPlayers >= 2 && numOfPlayers <= 4){
             if(mapSize >= minMapSize1 && mapSize <= maxMapSize){
                 this.mapSize = mapSize;
@@ -46,8 +46,9 @@ public class Game {
     }
 
     //sets the starting position of the players
-    void GenerateStartingPositions(char [][] map){
+    ArrayList<Position> GenerateStartingPositions(char [][] map, int numOfPlayers, int mapSize){
         Random rand = new Random();
+        ArrayList <Position> positions = new ArrayList<Position>();
         int x, y;
         for(int i = 0; i < numOfPlayers; i++){
 
@@ -58,11 +59,12 @@ public class Game {
                 //make sure that start position is not a water or treasure tile
                 if (map[x][y] == 'G') {
                     Position startPos = new Position(x, y);
-                    players.get(i).setPosition(startPos);
+                    positions.add(startPos);
                     break;
                 }
             }
         }//close for loop
+        return positions;
     }
 
     //skip

@@ -1,19 +1,26 @@
 package TreasureHuntGame;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 public class GameTest {
 
     Game game;
+    Map map;
+    char [][] gameMap;
+    int mapSize = 5;
 
     @Before
     public void setup() {
         game = new Game();
+        map = new Map();
+        gameMap = map.CreateMap(mapSize);
     }
 
     @After
@@ -22,9 +29,9 @@ public class GameTest {
     }
 
     @Test
-    public void TestSetNumOfPlayersSmaller() {
+    public void TestCheckNumOfPlayersSmaller() {
         //Exercise
-        boolean setPlayersNum = game.SetNumOfPlayers(1);
+        boolean setPlayersNum = game.CheckNumOfPlayers(1);
         //Verify
         assertEquals(false, setPlayersNum);
     }
@@ -32,7 +39,7 @@ public class GameTest {
     @Test
     public void TestSetNumOfPlayersLarger() {
         //Exercise
-        boolean setPlayersNum = game.SetNumOfPlayers(10);
+        boolean setPlayersNum = game.CheckNumOfPlayers(10);
         //Verify
         assertEquals(false, setPlayersNum);
     }
@@ -40,9 +47,51 @@ public class GameTest {
     @Test
     public void TestSetNumOfPlayersWithinRange() {
         //Exercise
-        boolean setPlayersNum = game.SetNumOfPlayers(5);
+        boolean setPlayersNum = game.CheckNumOfPlayers(5);
         //Verify
         assertEquals(true, setPlayersNum);
+    }
+
+    @Test
+    public void TestGenerateStartingPosition(){
+        ArrayList<Position> startPositions;
+        startPositions = game.GenerateStartingPositions(gameMap, 2, mapSize);
+
+        for(int i = 0; i < startPositions.size(); i++){
+            assertEquals(gameMap[startPositions.get(i).x][startPositions.get(i).y], 'G');
+        }
+    }
+
+    @Test
+    public void TestCheckMapSizeOutOfRangeSmaller(){
+        int mapSize = 2;
+        int numPlayers = 3;
+        boolean valid = game.CheckMapSize(mapSize, numPlayers);
+        assertFalse(valid);
+    }
+
+    @Test
+    public void TestCheckMapSizeOutOfRangeLarger(){
+        int mapSize = 51;
+        int numPlayers = 3;
+        boolean valid = game.CheckMapSize(mapSize, numPlayers);
+        assertFalse(valid);
+    }
+
+    @Test
+    public void TestCheckMapSizeWithin(){
+        int mapSize = 5;
+        int numPlayers = 3;
+        boolean valid = game.CheckMapSize(mapSize, numPlayers);
+        assertTrue(valid);
+    }
+
+    @Test
+    public void TestCheckMapSizeSmallerMapSize(){
+        int mapSize = 2;
+        int numPlayers = 3;
+        boolean valid = game.CheckMapSize(mapSize, numPlayers);
+        assertFalse(valid);
     }
 
 }
