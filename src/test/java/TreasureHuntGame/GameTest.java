@@ -86,12 +86,4 @@ public class GameTest {
         assertTrue(valid);
     }
 
-    @Test
-    public void TestCheckMapSizeSmallerMapSize(){
-        int mapSize = 2;
-        int numPlayers = 3;
-        boolean valid = game.CheckMapSize(mapSize, numPlayers);
-        assertFalse(valid);
-    }
-
 }

@@ -18,10 +18,10 @@ public class main {
             try {
                 System.out.println("Enter the number of players:");
                 numOfPlayers = scanner.nextInt();
-                cond1 = game.SetNumOfPlayers(numOfPlayers);
+                cond1 = game.CheckNumOfPlayers(numOfPlayers);
                 System.out.println("Enter the map size:");
                 mapSize = scanner.nextInt();
-                cond2 = game.SetMapSize(mapSize);
+                cond2 = game.CheckMapSize(mapSize, numOfPlayers);
                 correct = cond1 && cond2;
                 if (!correct) {
                     System.out.println("Error, check restrictions on number of players and map size.");
