@@ -1,29 +1,9 @@
 package TreasureHuntGame;
-
 import java.util.ArrayList;
-<<<<<<< HEAD
 
 /**
  * Created by jasmi on 20/03/2018.
  */
-
-public class Game {
-    int numOfPlayers;
-    int mapSize;
-    ArrayList<Player> players = new ArrayList<Player>();
-    Map map = new Map();
-
-    public Game () {}
-    //jas
-    char[][] GenerateMap(){
-        char [][] map = new char [1][1];
-        return map;
-    }
-
-    //jas
-    void GenerateStartingPositions(char [][] map){
-        //modifies players
-=======
 import java.util.Random;
 
 public class Game {
@@ -35,8 +15,10 @@ public class Game {
     int numOfPlayers;
     int mapSize;
     ArrayList<Player> players = new ArrayList<Player>();
+    Map map = new Map();
 
-    Game(){
+
+    public Game(){
     }
 
     boolean SetNumOfPlayers(int numOfPlayers){
@@ -81,7 +63,6 @@ public class Game {
                 }
             }
         }//close for loop
->>>>>>> jasmine_dev
     }
 
     //skip
@@ -89,8 +70,6 @@ public class Game {
 
     }
 
-    //marc
-<<<<<<< HEAD
     /*
     Function that accepts a player and the position and moves the player to that position
     and returns true if the player won, false otherwise.
@@ -113,9 +92,4 @@ public class Game {
         return false; //keep playing
     }
 }
-=======
-//    int CheckMovement(){
 
- //   }
-}
->>>>>>> jasmine_dev
