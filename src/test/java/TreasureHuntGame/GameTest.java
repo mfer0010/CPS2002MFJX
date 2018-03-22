@@ -44,12 +44,5 @@ public class GameTest {
         //Verify
         assertEquals(true, setPlayersNum);
     }
-//
-//    @Test
-//    public void TestSetMapSizeSmallerMin1() {
-//        //Exercise
-//        boolean setPlayersNum = game.SetNumOfPlayers(1);
-//        //Verify
-//        assertEquals(false, setPlayersNum);
-//    }
+
 }
