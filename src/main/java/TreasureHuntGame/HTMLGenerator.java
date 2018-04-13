@@ -11,7 +11,8 @@ public class HTMLGenerator {
 
     //generates an HTML file
     public void GenerateHTMLPlayerFile(char[][]map, String playerName, Position position) throws IOException{
-        String fileName = playerName + "_HTML_File.html";
+        playerName = "map_"+playerName;
+        String fileName = playerName + ".html";
         File htmlFile = new File(fileName);
         BufferedWriter bw = new BufferedWriter(new FileWriter(htmlFile));
         WriteToFile(bw, map, playerName, position);
@@ -23,7 +24,7 @@ public class HTMLGenerator {
         bw.write("<html>\n");
         bw.write("<body>\n");
         bw.write("  <h1>"+playerName+"</h1>\n");
-        bw.write("  <table style=\"height:300px; width:300px;\">\n");
+        bw.write("  <table style=\"height:1000px; width:1000px;\">\n");
 
         //loops through all the rows and columns of the map passed as parameter to print each tile as part of the table
         for(int i = 0; i<map.length; i++){
