@@ -6,7 +6,9 @@ import java.util.Scanner;
  * Created by marc on 22/03/2018.
  */
 public class main {
+
     public static void main (String [] args) {
+
         Scanner scanner = new Scanner(System.in);
         ArrayList <Player> players = new ArrayList<Player>();
         //Possible Directions:
@@ -65,17 +67,20 @@ public class main {
         }
 
         //test:
-        for (int i = 0; i < numOfPlayers; i++) System.out.println(players.get(i).getPosition().x+" "+players.get(i).getPosition().y);
+//        for (int i = 0; i < numOfPlayers; i++) System.out.println(players.get(i).getPosition().x+" "+players.get(i).getPosition().y);
 
         p = new Player(mapSize);
+
         //main loop (Until a player wins the game)
         while(!victory) {
+
             for(Player player:players) {
                 System.out.println("******************************");
                 System.out.println("           "+player.getName());
                 System.out.println("******************************\n\n");
                 //get Direction:
                 correct = false;
+
                 while(!correct) {
                     try {
                         System.out.println("Choose a Direction (U/D/L/R): ");
@@ -99,6 +104,7 @@ public class main {
                         correct = false;
                     }
                 }
+
                 //set the player's position
                 player.move(direction);
                 System.out.println(player.getPosition().x+" "+player.getPosition().y);
@@ -110,7 +116,9 @@ public class main {
                 player.GenerateHtmlFile();
             }
         }
+
         System.out.println("******************************");
         System.out.println(p.getName()+" wins the game!!");
+
     }
 }
