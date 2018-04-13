@@ -8,6 +8,7 @@ public class Player {
     private Position position, startingPosition;
     private Map map;
     private char [][] playerMap;
+    HTMLGenerator htmlGenerator = new HTMLGenerator();
 
     //Each Player must be initialized with the size of the map
     //and the starting position
@@ -25,6 +26,7 @@ public class Player {
         map = new Map();
         playerMap = map.createFoggyMap(mapSize);
         this.startingPosition = new Position(startingPosition);
+        this.position = new Position(startingPosition);
     }
 
     public String getName() {
@@ -39,17 +41,17 @@ public class Player {
     move function accepts a direction and sets the position of the player accordingly
      */
     public void move(char direction) {
-        if (direction == 'U' || direction == 'u') {
-            Position pos = new Position(position.x,(position.y)-1);
+        if (direction == 'U') {
+            Position pos = new Position(position.x-1,position.y);
             setPosition(pos);
-        } else if (direction == 'D' || direction == 'd') {
-            Position pos = new Position(position.x,(position.y)+1);
+        } else if (direction == 'D') {
+            Position pos = new Position(position.x+1,position.y);
             setPosition(pos);
-        } else if (direction == 'L' || direction == 'l') {
-            Position pos = new Position((position.x)-1,position.y);
+        } else if (direction == 'L') {
+            Position pos = new Position(position.x,position.y-1);
             setPosition(pos);
-        } else if (direction == 'R' || direction == 'r') {
-            Position pos = new Position((position.x)+1,position.y);
+        } else if (direction == 'R') {
+            Position pos = new Position(position.x,position.y+1);
             setPosition(pos);
         }
     }
@@ -73,5 +75,16 @@ public class Player {
     //function to move the player back to their origional starting position
     public void resetPosition() {
         position = startingPosition;
+    }
+
+    //skip
+    void GenerateHtmlFile(){
+        try{
+            htmlGenerator.GenerateHTMLPlayerFile(this.playerMap, this.name, this.position);
+        }
+        catch (Exception e){
+            System.out.println("Unable to generate HTML file");
+            System.exit(0);
+        }
     }
 }
