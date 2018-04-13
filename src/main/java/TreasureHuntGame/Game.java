@@ -67,11 +67,6 @@ public class Game {
         return positions;
     }
 
-    //skip
-    void GenerateHtmlFile(){
-
-    }
-
     /*
     Function that accepts a player and the position and moves the player to that position
     and returns true if the player won, false otherwise.
