@@ -63,6 +63,6 @@ public class PlayerTest {
         player.move('D');
         Position newPos = player.getPosition();
 
-        assertEquals(5,newPos.y);
+        assertEquals(3,newPos.x);
     }
 }
