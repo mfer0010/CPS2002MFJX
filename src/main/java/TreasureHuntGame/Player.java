@@ -8,6 +8,7 @@ public class Player {
     private Position position, startingPosition;
     private Map map;
     private char [][] playerMap;
+    HTMLGenerator htmlGenerator = new HTMLGenerator();
 
     //Each Player must be initialized with the size of the map
     //and the starting position
@@ -41,16 +42,16 @@ public class Player {
      */
     public void move(char direction) {
         if (direction == 'U') {
-            Position pos = new Position(position.x,(position.y)-1);
+            Position pos = new Position(position.x-1,position.y);
             setPosition(pos);
         } else if (direction == 'D') {
-            Position pos = new Position(position.x,(position.y)+1);
+            Position pos = new Position(position.x+1,position.y);
             setPosition(pos);
         } else if (direction == 'L') {
-            Position pos = new Position((position.x)-1,position.y);
+            Position pos = new Position(position.x,position.y-1);
             setPosition(pos);
         } else if (direction == 'R') {
-            Position pos = new Position((position.x)+1,position.y);
+            Position pos = new Position(position.x,position.y+1);
             setPosition(pos);
         }
     }
@@ -78,6 +79,12 @@ public class Player {
 
     //skip
     void GenerateHtmlFile(){
-
+        try{
+            htmlGenerator.GenerateHTMLPlayerFile(this.playerMap, this.name, this.position);
+        }
+        catch (Exception e){
+            System.out.println("Unable to generate HTML file");
+            System.exit(0);
+        }
     }
 }

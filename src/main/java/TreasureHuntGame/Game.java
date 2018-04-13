@@ -1,12 +1,10 @@
 package TreasureHuntGame;
-import javafx.geometry.Pos;
-
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by jasmi on 20/03/2018.
  */
-import java.util.Random;
 
 public class Game {
     int minPlayers = 2;
@@ -15,7 +13,6 @@ public class Game {
     int minMapSize2 = 8;
     int maxMapSize = 50;
     int mapSize;
-    ArrayList<Player> players = new ArrayList<Player>();
     Map map = new Map();
 
 
@@ -83,7 +80,7 @@ public class Game {
         } else if (tile == 'W') {
             //Move player back to starting position, but leave map
             //in the same state so that the player can see where they've
-            //already bin
+            //already been
             player.resetPosition();
         }
         return false; //keep playing
