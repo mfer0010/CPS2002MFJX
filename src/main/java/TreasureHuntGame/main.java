@@ -24,7 +24,7 @@ public class main {
         boolean cond1, cond2;
 
         int numOfPlayers = 0, mapSize = 0;
-
+        HTMLGenerator temp = new HTMLGenerator();
 
         //Check the User inputs:
         while (!correct) {
@@ -48,12 +48,18 @@ public class main {
 
         //Create the Game Map:
         char [][] gameMap = map.CreateMap(mapSize);
+        try{
+            temp.GenerateHTMLPlayerFile(gameMap, "game map", new Position(-1,-1));
+        }
+        catch (Exception e){
+        }
 
         //create each player
         ArrayList <Position> positions = game.GenerateStartingPositions(gameMap,numOfPlayers,mapSize);
         System.out.println(positions.get(1).x+" "+positions.get(1).y);
         for (int i = 1; i <= numOfPlayers; i++) {
             p = new Player("Player "+i,mapSize,positions.get(i-1));
+            map.revealTile(p.getMap(),gameMap,p.getPosition());
             p.GenerateHtmlFile();
             players.add(p);
         }
@@ -76,13 +82,13 @@ public class main {
                         direction = Character.toUpperCase(scanner.next().charAt(0));
                         if (!directions.contains(direction)) {
                             System.out.println("Enter either U or D or L or R");
-                        } else if (direction == 'U' && player.getPosition().y <= 0) {
+                        } else if (direction == 'U' && player.getPosition().x <= 0) {
                             System.out.println(player.getName() + " cannot move up");
-                        } else if (direction == 'D' && player.getPosition().y >= mapSize) {
+                        } else if (direction == 'D' && player.getPosition().x >= mapSize-1) {
                             System.out.println(player.getName() + " cannot move down");
-                        } else if (direction == 'L' && player.getPosition().x <= 0) {
+                        } else if (direction == 'L' && player.getPosition().y <= 0) {
                             System.out.println(player.getName()+" cannot move left");
-                        } else if (direction == 'R' && player.getPosition().x >= mapSize) {
+                        } else if (direction == 'R' && player.getPosition().y >= mapSize-1) {
                             System.out.println(player.getName()+" cannot move right");
                         } else {
                             correct = true;
