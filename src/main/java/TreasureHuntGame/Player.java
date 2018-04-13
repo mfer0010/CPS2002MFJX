@@ -25,6 +25,7 @@ public class Player {
         map = new Map();
         playerMap = map.createFoggyMap(mapSize);
         this.startingPosition = new Position(startingPosition);
+        this.position = new Position(startingPosition);
     }
 
     public String getName() {
@@ -39,16 +40,16 @@ public class Player {
     move function accepts a direction and sets the position of the player accordingly
      */
     public void move(char direction) {
-        if (direction == 'U' || direction == 'u') {
+        if (direction == 'U') {
             Position pos = new Position(position.x,(position.y)-1);
             setPosition(pos);
-        } else if (direction == 'D' || direction == 'd') {
+        } else if (direction == 'D') {
             Position pos = new Position(position.x,(position.y)+1);
             setPosition(pos);
-        } else if (direction == 'L' || direction == 'l') {
+        } else if (direction == 'L') {
             Position pos = new Position((position.x)-1,position.y);
             setPosition(pos);
-        } else if (direction == 'R' || direction == 'r') {
+        } else if (direction == 'R') {
             Position pos = new Position((position.x)+1,position.y);
             setPosition(pos);
         }
@@ -73,5 +74,10 @@ public class Player {
     //function to move the player back to their origional starting position
     public void resetPosition() {
         position = startingPosition;
+    }
+
+    //skip
+    void GenerateHtmlFile(){
+
     }
 }
