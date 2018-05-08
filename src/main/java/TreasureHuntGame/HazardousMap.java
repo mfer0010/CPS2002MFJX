@@ -1,24 +1,33 @@
-/*package TreasureHuntGame;
+package TreasureHuntGame;
+
+/**
+ * Created by marc on 08/05/2018.
+ */
 import java.util.*;
 
-public class Map {
+public class HazardousMap implements Map {
+    int size;
+    double waterProb;
 
-    private int size;
-    private double waterProb = 0.1;
-
-    public Map(){
+    public HazardousMap() {
+        Random random = new Random();
+        this.waterProb = 0.25 +0.1 * random.nextDouble();
+//        System.out.println(this.waterProb);
     }
 
-    public int GetSize(){
-        return size;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public void SetSize(int s){
-        size = s;
+    public int getSize() {
+        return this.size;
     }
 
+    public double getWaterProb() {
+        return this.waterProb;
+    }
     public char[][] CreateMap(int s){
-        size = s;
+        setSize(s);
         char mapArray[][] = new char[size][size];
         Random rand = new Random();
         double temp;
@@ -45,7 +54,6 @@ public class Map {
         return mapArray;
     }
 
-    //Added by Marc:
     //This function creates a map state filled with 'Black' Tiles,
     //This is to be used for each player's personal map
     //which will be displayed.
@@ -61,28 +69,13 @@ public class Map {
         return mapArray;
     }
 
-    /*
+/*
     Added by Marc:
     This function accepts the player's map and the game map and a position and reveals
-    the tile in the position of the player map
-
+    the tile in the position of the player map*/
     public void revealTile(char[][] playerMap, char[][]gameMap, Position pos) {
         int x = pos.x;
         int y = pos.y;
         playerMap[x][y] = gameMap[x][y];
     }
-}*/
-
-package TreasureHuntGame;
-
-public interface Map {
-//    int size;
-//    double waterProb = 0;
-
-    void setSize(int size);
-    int getSize();
-    double getWaterProb();
-    char[][] CreateMap(int s);
-    char[][] createFoggyMap(int size);
-    void revealTile(char[][] playerMap, char[][]gameMap, Position pos);
 }

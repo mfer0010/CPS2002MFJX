@@ -12,14 +12,16 @@ public class CheckMovementTest {
     Player player;
     Position pos;
     Game game;
+    MapCreator mapCreator;
     Map map;
     char [][] gameMap;
     int mapSize = 5;
 
     @Before
     public void setup() {
-        map = new Map();
+        mapCreator = new MapCreator();
         game = new Game();
+        map = mapCreator.createMap("Safe");
         gameMap = map.CreateMap(mapSize);
         pos = new Position(3,2);
         player = new Player("Marc",mapSize,pos);

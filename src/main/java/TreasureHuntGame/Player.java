@@ -15,7 +15,7 @@ public class Player {
     public Player (int size) {
         name = "Undefined";
         position = new Position();
-        map = new Map();
+        map = new SafeMap();
         playerMap = map.createFoggyMap(size);
         this.startingPosition = new Position();
     }
@@ -23,7 +23,7 @@ public class Player {
     public Player(String name, int mapSize, Position startingPosition) {
         this.name = name;
         position = new Position();
-        map = new Map();
+        map = new SafeMap();
         playerMap = map.createFoggyMap(mapSize);
         this.startingPosition = new Position(startingPosition);
         this.position = new Position(startingPosition);

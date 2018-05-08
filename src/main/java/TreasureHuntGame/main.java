@@ -20,10 +20,11 @@ public class main {
         Player p;
         char direction = 'U';
         Game game = new Game();
-        Map map = new Map();
+        MapCreator mapCreator = new MapCreator();
         boolean correct = false;
         boolean victory = false; //True when a player finds the treasure
-        boolean cond1, cond2;
+        boolean cond1, cond2, cond3;
+        String mapType = "Safe";
 
         int numOfPlayers = 0, mapSize = 0;
         HTMLGenerator temp = new HTMLGenerator();
@@ -37,9 +38,12 @@ public class main {
                 System.out.println("Enter the map size:");
                 mapSize = scanner.nextInt();
                 cond2 = game.CheckMapSize(mapSize, numOfPlayers);
-                correct = cond1 && cond2;
+                System.out.println("Enter the map type (Hazardous or Safe):");
+                mapType = scanner.next();
+                cond3 = mapType.equalsIgnoreCase("Hazardous") || mapType.equalsIgnoreCase("Safe");
+                correct = cond1 && cond2 && cond3;
                 if (!correct) {
-                    System.out.println("Error, check restrictions on number of players and map size.");
+                    System.out.println("Error, check restrictions on number of players, map size and map type.");
                 }
             } catch (Exception e) {
                 System.out.println("Invalid Input!!");
@@ -49,6 +53,8 @@ public class main {
         }
 
         //Create the Game Map:
+
+        Map map = mapCreator.createMap(mapType);
         char [][] gameMap = map.CreateMap(mapSize);
         try{
             temp.GenerateHTMLPlayerFile(gameMap, "game map", new Position(-1,-1));
