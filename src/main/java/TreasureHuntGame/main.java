@@ -67,7 +67,7 @@ public class main {
         System.out.println(positions.get(1).x+" "+positions.get(1).y);
         for (int i = 1; i <= numOfPlayers; i++) {
             p = new Player("player_"+i,mapSize,positions.get(i-1));
-            map.revealTile(p.getMap(),gameMap,p.getPosition());
+            game.revealTile(p.getMap(),gameMap,p.getPosition());
             p.GenerateHtmlFile();
             players.add(p);
         }

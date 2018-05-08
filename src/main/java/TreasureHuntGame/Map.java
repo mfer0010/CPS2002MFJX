@@ -84,5 +84,5 @@ public interface Map {
     double getWaterProb();
     char[][] CreateMap(int s);
     char[][] createFoggyMap(int size);
-    void revealTile(char[][] playerMap, char[][]gameMap, Position pos);
+    //void revealTile(char[][] playerMap, char[][]gameMap, Position pos);
 }
