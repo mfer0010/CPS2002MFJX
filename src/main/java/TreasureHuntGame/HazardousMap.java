@@ -68,14 +68,4 @@ public class HazardousMap implements Map {
         }
         return mapArray;
     }
-
-/*
-    Added by Marc:
-    This function accepts the player's map and the game map and a position and reveals
-    the tile in the position of the player map*/
-    public void revealTile(char[][] playerMap, char[][]gameMap, Position pos) {
-        int x = pos.x;
-        int y = pos.y;
-        playerMap[x][y] = gameMap[x][y];
-    }
 }
