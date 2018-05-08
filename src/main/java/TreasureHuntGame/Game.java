@@ -13,7 +13,7 @@ public class Game {
     int minMapSize2 = 8;
     int maxMapSize = 50;
     int mapSize;
-    Map map = new Map();
+    Map map;
 
 
     public Game(){

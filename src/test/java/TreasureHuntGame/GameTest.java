@@ -13,19 +13,23 @@ public class GameTest {
 
     Game game;
     Map map;
+    MapCreator mapCreator;
     char [][] gameMap;
     int mapSize = 5;
 
     @Before
     public void setup() {
         game = new Game();
-        map = new Map();
+        mapCreator = new MapCreator();
+        map = mapCreator.createMap("Hazardous");
         gameMap = map.CreateMap(mapSize);
     }
 
     @After
     public void teardown() {
         game = null;
+        mapCreator = null;
+        map = null;
     }
 
     @Test
