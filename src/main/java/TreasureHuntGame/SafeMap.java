@@ -8,10 +8,18 @@ import java.util.Random;
 public class SafeMap implements Map {
     int size;
     double waterProb;
+    private static SafeMap instance = null;
 
-    public SafeMap() {
+    private SafeMap() {
         Random random = new Random();
         waterProb = 0.1* random.nextDouble();
+    }
+
+    public static SafeMap getInstance(){
+        if(instance == null){
+            instance = new SafeMap();
+        }
+        return instance;
     }
 
     public void setSize(int size) {
@@ -57,17 +65,17 @@ public class SafeMap implements Map {
     //This function creates a map state filled with 'Black' Tiles,
     //This is to be used for each player's personal map
     //which will be displayed.
-    public char[][] createFoggyMap(int size) {
-        this.size = size;
-        char mapArray[][] = new char[size][size];
-        //populate map
-        for(int i = 0; i <size; i++) {
-            for (int j = 0; j < size; j++) {
-                mapArray[i][j] = 'B';
-            }
-        }
-        return mapArray;
-    }
+//    public char[][] createFoggyMap(int size) {
+//        this.size = size;
+//        char mapArray[][] = new char[size][size];
+//        //populate map
+//        for(int i = 0; i <size; i++) {
+//            for (int j = 0; j < size; j++) {
+//                mapArray[i][j] = 'B';
+//            }
+//        }
+//        return mapArray;
+//    }
 
 //    /*
 //        Added by Marc:

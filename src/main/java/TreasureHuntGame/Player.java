@@ -6,7 +6,7 @@ package TreasureHuntGame;
 public class Player {
     private String name;
     private Position position, startingPosition;
-    private Map map;
+    //private Map map;
     private char [][] playerMap;
     HTMLGenerator htmlGenerator = new HTMLGenerator();
 
@@ -15,16 +15,18 @@ public class Player {
     public Player (int size) {
         name = "Undefined";
         position = new Position();
-        map = new SafeMap();
-        playerMap = map.createFoggyMap(size);
+        //map = new SafeMap();
+        //map = SafeMap.getInstance(); //getting copy of the pre-created safe map
+        createFoggyMap(size);
         this.startingPosition = new Position();
     }
 
     public Player(String name, int mapSize, Position startingPosition) {
         this.name = name;
         position = new Position();
-        map = new SafeMap();
-        playerMap = map.createFoggyMap(mapSize);
+        //map = new SafeMap();
+        //map = SafeMap.getInstance();
+        createFoggyMap(mapSize);
         this.startingPosition = new Position(startingPosition);
         this.position = new Position(startingPosition);
     }
@@ -72,7 +74,7 @@ public class Player {
         return playerMap;
     }
 
-    //function to move the player back to their origional starting position
+    //function to move the player back to their original starting position
     public void resetPosition() {
         position = startingPosition;
     }
@@ -85,6 +87,19 @@ public class Player {
         catch (Exception e){
             System.out.println("Unable to generate HTML file");
             System.exit(0);
+        }
+    }
+
+    //This function creates a map state filled with 'Black' Tiles,
+    //This is to be used for each player's personal map
+    //which will be displayed.
+    public void createFoggyMap(int size) {
+        playerMap = new char[size][size];
+        //populate map
+        for(int i = 0; i <size; i++) {
+            for (int j = 0; j < size; j++) {
+                playerMap[i][j] = 'B';
+            }
         }
     }
 }

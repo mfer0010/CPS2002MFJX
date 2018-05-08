@@ -25,6 +25,6 @@ public class MapCreator {
 
     //To be overridden
     public Map create(){
-        return new SafeMap();
+        return null;
     }
 }

@@ -5,6 +5,6 @@ package TreasureHuntGame;
  */
 public class HazardousMapCreator extends MapCreator {
     public HazardousMap create() {
-        return new HazardousMap();
+        return HazardousMap.getInstance();
     }
 }

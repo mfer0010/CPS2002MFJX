@@ -65,4 +65,15 @@ public class PlayerTest {
 
         assertEquals(3,newPos.x);
     }
+
+    @Test
+    //test that all the tiles are set to black
+    public void testFoggyMap(){
+        player.createFoggyMap(5);
+        for(char[] i: player.getMap()){
+            for(char j : i){
+                assertEquals('B', j);
+            }
+        }
+    }
 }

@@ -8,11 +8,19 @@ import java.util.*;
 public class HazardousMap implements Map {
     int size;
     double waterProb;
+    private static HazardousMap instance = null;
 
-    public HazardousMap() {
+    private HazardousMap() {
         Random random = new Random();
         this.waterProb = 0.25 +0.1 * random.nextDouble();
 //        System.out.println(this.waterProb);
+    }
+
+    public static HazardousMap getInstance(){
+        if(instance == null){
+            instance = new HazardousMap();
+        }
+        return instance;
     }
 
     public void setSize(int size) {
@@ -57,15 +65,15 @@ public class HazardousMap implements Map {
     //This function creates a map state filled with 'Black' Tiles,
     //This is to be used for each player's personal map
     //which will be displayed.
-    public char[][] createFoggyMap(int size) {
-        this.size = size;
-        char mapArray[][] = new char[size][size];
-        //populate map
-        for(int i = 0; i <size; i++) {
-            for (int j = 0; j < size; j++) {
-                mapArray[i][j] = 'B';
-            }
-        }
-        return mapArray;
-    }
+//    public char[][] createFoggyMap(int size) {
+//        this.size = size;
+//        char mapArray[][] = new char[size][size];
+//        //populate map
+//        for(int i = 0; i <size; i++) {
+//            for (int j = 0; j < size; j++) {
+//                mapArray[i][j] = 'B';
+//            }
+//        }
+//        return mapArray;
+//    }
 }

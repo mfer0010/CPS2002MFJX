@@ -5,6 +5,6 @@ package TreasureHuntGame;
  */
 public class SafeMapCreator extends MapCreator {
     public SafeMap create() {
-        return new SafeMap();
+        return SafeMap.getInstance();
     }
 }
