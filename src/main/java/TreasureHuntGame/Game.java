@@ -13,10 +13,16 @@ public class Game {
     int minMapSize2 = 8;
     int maxMapSize = 50;
     int mapSize;
-    Map map = new Map();
-
+    //Map map;
 
     public Game(){
+    }
+
+    boolean CheckNumOfTeams(int numTeams){
+        if(numTeams <= 0 || numTeams > 5){ //cannot be greater than 5
+            return false;
+        }
+        return true;
     }
 
     boolean CheckNumOfPlayers(int numOfPlayers){
@@ -70,7 +76,8 @@ public class Game {
      */
     boolean CheckMovement(Player player, char[][] gameMap, Position pos){
         //Uncover the target tile
-        map.revealTile(player.getMap(), gameMap, pos);
+        //revealTile(player.getMap(), gameMap, pos);
+        player.team.updateMapState(pos);
 
         char tile = player.getMap()[pos.x][pos.y];
         if (tile == 'T') {
@@ -85,5 +92,15 @@ public class Game {
         }
         return false; //keep playing
     }
+
+    /*
+    Added by Marc:
+    This function accepts the player's map and the game map and a position and reveals
+    the tile in the position of the player map*/
+//    public void revealTile(char[][] playerMap, char[][]gameMap, Position pos) {
+//        int x = pos.x;
+//        int y = pos.y;
+//        playerMap[x][y] = gameMap[x][y];
+//    }
 }
 

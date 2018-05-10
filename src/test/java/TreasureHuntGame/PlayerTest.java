@@ -9,12 +9,17 @@ public class PlayerTest {
 
     Player player, player2;
     Position pos;
+    Team team;
 
     @Before
     public void setup() {
+        char [][] tempMap = {{'G','G','G','G','G'},{'G','G','G','G','G'},{'G','G','G','G','G'},{'G','G','G','G','G'},{'G','G','G','G','G'}};
+        team = new Team(5, tempMap);
         pos = new Position(2,4);
-        player = new Player("Marc", 5, pos);
+        player = new Player("Marc", 5, pos, team);
         player2 = new Player(5);
+        team.addObserver(player);
+        team.addObserver(player2);
     }
 
     @After
@@ -65,4 +70,5 @@ public class PlayerTest {
 
         assertEquals(3,newPos.x);
     }
+
 }

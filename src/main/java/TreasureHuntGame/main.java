@@ -11,6 +11,8 @@ public class main {
 
         Scanner scanner = new Scanner(System.in);
         ArrayList <Player> players = new ArrayList<Player>();
+        Team[] teams;
+
         //Possible Directions:
         ArrayList <Character> directions = new ArrayList<Character>();
         directions.add('U');
@@ -20,26 +22,37 @@ public class main {
         Player p;
         char direction = 'U';
         Game game = new Game();
-        Map map = new Map();
+        MapCreator mapCreator = new MapCreator();
         boolean correct = false;
         boolean victory = false; //True when a player finds the treasure
-        boolean cond1, cond2;
+        boolean cond1, cond2, cond3, cond4;
+        String mapType = "Safe";
 
-        int numOfPlayers = 0, mapSize = 0;
+        int numOfPlayers = 0, mapSize = 0, numTeams = 0;
         HTMLGenerator temp = new HTMLGenerator();
 
         //Check the User inputs:
         while (!correct) {
             try {
+                System.out.println("Enter the number of teams:");
+                numTeams = scanner.nextInt();
+                cond4 = game.CheckNumOfTeams(numTeams);
+
                 System.out.println("Enter the number of players:");
                 numOfPlayers = scanner.nextInt();
                 cond1 = game.CheckNumOfPlayers(numOfPlayers);
+
                 System.out.println("Enter the map size:");
                 mapSize = scanner.nextInt();
                 cond2 = game.CheckMapSize(mapSize, numOfPlayers);
-                correct = cond1 && cond2;
+
+                System.out.println("Enter the map type (Hazardous or Safe):");
+                mapType = scanner.next();
+                cond3 = mapType.equalsIgnoreCase("Hazardous") || mapType.equalsIgnoreCase("Safe");
+
+                correct = cond1 && cond2 && cond3 && cond4;
                 if (!correct) {
-                    System.out.println("Error, check restrictions on number of players and map size.");
+                    System.out.println("Error, check restrictions on number of players, map size, number of players, and map type.");
                 }
             } catch (Exception e) {
                 System.out.println("Invalid Input!!");
@@ -48,7 +61,10 @@ public class main {
             }
         }
 
+
         //Create the Game Map:
+
+        Map map = mapCreator.createMap(mapType);
         char [][] gameMap = map.CreateMap(mapSize);
         try{
             temp.GenerateHTMLPlayerFile(gameMap, "game map", new Position(-1,-1));
@@ -56,12 +72,28 @@ public class main {
         catch (Exception e){
         }
 
+        //create each team
+        teams = new Team[numTeams];
+        for(int i = 0; i < numTeams; i++) {
+            teams[i] = new Team(mapSize, gameMap);
+        }
+
         //create each player
+        int playerTeam = 0;
         ArrayList <Position> positions = game.GenerateStartingPositions(gameMap,numOfPlayers,mapSize);
         System.out.println(positions.get(1).x+" "+positions.get(1).y);
         for (int i = 1; i <= numOfPlayers; i++) {
-            p = new Player("player_"+i,mapSize,positions.get(i-1));
-            map.revealTile(p.getMap(),gameMap,p.getPosition());
+            cond1 = false;
+            while (!cond1) {
+                System.out.println("For player " + i + " enter the team you wish to join:");
+                playerTeam = scanner.nextInt();
+                cond1 = (playerTeam <= numTeams && playerTeam > 0);
+            }
+            p = new Player("player_"+i,mapSize,positions.get(i-1), teams[playerTeam-1]);
+
+            p.team.addObserver(p);
+            //game.revealTile(p.getMap(),gameMap,p.getPosition());
+            p.team.updateMapState(p.getPosition());
             p.GenerateHtmlFile();
             players.add(p);
         }
@@ -113,7 +145,7 @@ public class main {
                 if (victory) {
                     p = player; //save the winning player
                 }
-                player.GenerateHtmlFile();
+                //player.GenerateHtmlFile();
             }
         }
 

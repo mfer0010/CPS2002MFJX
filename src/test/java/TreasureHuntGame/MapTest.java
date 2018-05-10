@@ -8,24 +8,27 @@ import static org.junit.Assert.*;
 
 public class MapTest {
 
+    MapCreator mapCreator;
     Map map;
 
     @Before
     public void setup() {
-        map = new Map();
-        map.SetSize(5);
+        mapCreator = new MapCreator();
+        map = mapCreator.createMap("Safe");
+        map.setSize(5);
     }
 
     @After
     public void teardown() {
         map = null;
+        mapCreator = null;
     }
 
     @Test
     public void testGetMapSize() {
 
         //Exercise
-        int mapSize = map.GetSize();
+        int mapSize = map.getSize();
 
         //Verify
         assertEquals(5, mapSize);
