@@ -24,7 +24,7 @@ public class CheckMovementTest {
         map = mapCreator.createMap("Safe");
         gameMap = map.CreateMap(mapSize);
         pos = new Position(3,2);
-        player = new Player("Marc",mapSize,pos);
+        player = new Player("Marc",mapSize,pos, new Team(mapSize, gameMap));
         System.out.println("Game Map:");
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
@@ -32,13 +32,6 @@ public class CheckMovementTest {
             }
             System.out.println();
         }
-        /*System.out.println("Player Map:");
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                System.out.print(player.getMap()[i][j] + " ");
-            }
-            System.out.println();
-        }*/
     }
 
     @After
@@ -59,10 +52,4 @@ public class CheckMovementTest {
         }
     }
 
-    @Test
-    public void testPlayerMap() {
-        pos = new Position(3,3);
-        boolean victory = game.CheckMovement(player,gameMap,pos);
-        assertNotEquals('B',player.getMap()[3][3]);
-    }
 }

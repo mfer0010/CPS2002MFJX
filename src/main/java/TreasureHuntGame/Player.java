@@ -3,7 +3,8 @@ package TreasureHuntGame;
 /**
  * Created by marc on 20/03/2018.
  */
-public class Player {
+public class Player implements Observer{
+    public Team team = null;
     private String name;
     private Position position, startingPosition;
     //private Map map;
@@ -15,15 +16,17 @@ public class Player {
     public Player (int size) {
         name = "Undefined";
         position = new Position();
+       // this.team = team;
         //map = new SafeMap();
         //map = SafeMap.getInstance(); //getting copy of the pre-created safe map
         createFoggyMap(size);
         this.startingPosition = new Position();
     }
 
-    public Player(String name, int mapSize, Position startingPosition) {
+    public Player(String name, int mapSize, Position startingPosition, Team team) {
         this.name = name;
         position = new Position();
+        this.team = team;
         //map = new SafeMap();
         //map = SafeMap.getInstance();
         createFoggyMap(mapSize);
@@ -79,7 +82,6 @@ public class Player {
         position = startingPosition;
     }
 
-    //skip
     void GenerateHtmlFile(){
         try{
             htmlGenerator.GenerateHTMLPlayerFile(this.playerMap, this.name, this.position);
@@ -101,5 +103,10 @@ public class Player {
                 playerMap[i][j] = 'B';
             }
         }
+    }
+
+    public void update(){
+        this.playerMap = team.mapState;
+        GenerateHtmlFile();
     }
 }
