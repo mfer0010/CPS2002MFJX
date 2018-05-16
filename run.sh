@@ -1,0 +1,1 @@
+java -jar out/artifacts/CPS2002MFJX_jar/CPS2002MFJX.jar
